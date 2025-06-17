@@ -1,4 +1,4 @@
-const { user } = require('../../../models');
+const { User } = require('../../../models');
 const bcrypt = require('bcrypt');
 
 class UserService {
@@ -38,7 +38,7 @@ class UserService {
 
     async update(id, data) {
         const user = await User.findByPk(id);
-        if(!user) throw new HostNotFoundError("User Tidak Ditemukan!");
+        if(!user) return null;
 
         if(data.email && data.email !== user.email){
             const existingUser = await User.findOne({
@@ -62,7 +62,7 @@ class UserService {
 
         } catch (err) {
             console.error("error", err);
-            const message = err.errors?.map(e => e.message) || [e.message];
+            const message = err.errors?.map(e => e.message) || [err.message];
             throw new ServerError("Gagal Update User: " + message.join(', '));
         }
 
@@ -71,7 +71,12 @@ class UserService {
         return userJson;
     }
 
-    as
+    async delete(id) {
+        const user = await User.findByPk(id);
+        if(!user) return null;
+        await user.destroy();
+        return true;
+    }
 
 }
 
