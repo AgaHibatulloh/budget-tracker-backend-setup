@@ -1,22 +1,22 @@
-module.exports = (sequelize, Datatypes) => {
+module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true,
         },
         uuid: {
-            type: Datatypes.UUID,
+            type: DataTypes.UUID,
             allowNull: false,
-            defaultValue: Datatypes.UUIDV4,
+            defaultValue: DataTypes.UUIDV4,
             unique: true
         },
         name: {
-            type: Datatypes.String(50),
+            type: DataTypes.STRING(50),
             allowNull:false,
         },
         email: {
-            type: Datatypes.String(50),
+            type: DataTypes.STRING(50),
             allowNull: false,
             unique: true,
         },
@@ -48,7 +48,7 @@ module.exports = (sequelize, Datatypes) => {
             foreignKey: 'user_id',
             as: 'transactions'
         });
-        User.hasMany(models,MonthlySummary, {
+        User.hasMany(models.MonthlySummary, {
             foreignKey: 'user_id',
             as: 'summary_user'
         })

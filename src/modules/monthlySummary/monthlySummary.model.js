@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const MonthlySummary = sequelize.define('MonthlySummary', {
         id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true,
         },
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         user_id: {
-            type: DataTyypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         created_at: {
@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         MonthlySummary.associate = (models) => {
-            MonthlySummaryy.belongsTo(models.User, {
+            MonthlySummary.belongsTo(models.User, {
                 foreignKey: "user_id",
                 as: "summary_user"
             })

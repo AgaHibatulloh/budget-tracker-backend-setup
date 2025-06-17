@@ -3,7 +3,7 @@ const router = express.Router();
 
 const UserController = require('./user.controller');
 
-const asyncErrorHandler = require('../../err/asyncErrorHandler');
+const asyncErrorHandler = require('../../errors/asyncErrorHandler');
 
 router.get('/', asyncErrorHandler(
     UserController.getALL.bind(UserController)

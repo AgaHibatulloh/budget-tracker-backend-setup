@@ -3,7 +3,7 @@ const { all } = require("axios")
 module.exports = (sequelize, DataTypes) => {
     const Transaction = sequelize.define('Transaction', {
         id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true,
         },
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         amount: {
-            tyype: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         date: {
